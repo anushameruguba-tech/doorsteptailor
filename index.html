@@ -233,8 +233,10 @@ section{padding:64px 0}
     <label>Phone<input required type="tel"></label>
     <label>Postcode<input required placeholder="SW7"></label>
     <label>Service<select><option>Standard (3–4 working days)</option><option>Same day (+£20)</option></select></label>
-    <label>Preferred date &amp; time<input placeholder="e.g. Tuesday evening"></label>
+    <label>Preferred date<input type="date" id="bdate" required></label>
+    <label>Time slot<select id="bslot" required><option value="">Choose a date first</option></select></label>
     <label>What needs altering?<textarea placeholder="e.g. 2 trousers to shorten"></textarea></label>
+    <label class="consent" style="flex-direction:row;display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-weight:300;font-size:.85rem"><input type="checkbox" required style="margin-top:5px"><span>I agree to the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.</span></label>
     <button class="btn" type="submit">Request Booking</button>
     <div class="ok" id="ok">Thank you. This is a preview, so the form isn't connected yet.</div>
   </form>
@@ -245,6 +247,7 @@ section{padding:64px 0}
 <footer>
   <img src="img/logo.png" alt="Doorstep Tailor" width="180" height="52" style="display:block;margin:0 auto 10px">
   Clothing alterations &amp; tailoring in South Kensington, Chelsea &amp; Knightsbridge, London · © 2026
+  <div style="margin-top:10px"><a href="terms.html" style="color:#c8a24f">Terms</a> · <a href="privacy.html" style="color:#c8a24f">Privacy &amp; Cookies</a></div>
 </footer>
 
 <script>
@@ -286,6 +289,20 @@ Q.forEach(function(q){var b=document.createElement('button');b.type='button';b.t
 document.getElementById('cb-btn').onclick=function(){box.classList.toggle('open');if(!started){started=true;add("Hello! Welcome to Doorstep Tailor. How can I help you today?",'bot');}};
 document.getElementById('cb-x').onclick=function(){box.classList.remove('open');};
 document.getElementById('cb-f').addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('cb-i');if(i.value.trim()){ask(i.value.trim());i.value='';}});
+})();
+</script>
+<script>
+(function(){
+var d=document.getElementById('bdate'),s=document.getElementById('bslot');
+var t=new Date(),pad=function(n){return(n<10?'0':'')+n};
+d.min=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+var slots={wk:['07:30 – 09:30','09:30 – 11:30','11:30 – 13:30','13:30 – 15:30','15:30 – 17:30','17:30 – 19:30','19:30 – 21:00'],sat:['09:00 – 11:00','11:00 – 13:00','13:00 – 15:00','15:00 – 18:00'],sun:['10:00 – 12:00','12:00 – 14:00','14:00 – 16:00']};
+d.addEventListener('change',function(){
+  s.innerHTML='';if(!d.value){s.innerHTML='<option value="">Choose a date first</option>';return;}
+  var day=new Date(d.value+'T12:00').getDay(),list=day===0?slots.sun:day===6?slots.sat:slots.wk;
+  var o=document.createElement('option');o.value='';o.textContent='Choose a time slot';s.appendChild(o);
+  list.forEach(function(x){var o=document.createElement('option');o.textContent=x;s.appendChild(o);});
+});
 })();
 </script>
 </body>
