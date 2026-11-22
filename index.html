@@ -83,7 +83,11 @@ textarea{min-height:70px}
 .ph{background:#c9a96e33;padding:0 5px}
 footer{background:var(--navy);color:#8b95a5;text-align:center;padding:36px 0;font-size:.82rem}
 footer .logo{font-size:1.2rem;display:block;margin-bottom:6px}
-.hero{position:relative;overflow:hidden;background:linear-gradient(rgba(15,27,45,.78),rgba(15,27,45,.9)),url(img/hero.jpg) center 30%/cover}
+.hero{position:relative;overflow:hidden;background:var(--navy) url(vid/hero.jpg) center/cover}
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.ov{position:absolute;inset:0;background:linear-gradient(rgba(15,27,45,.72),rgba(15,27,45,.9));z-index:0}
+.hero h1+.line{margin-bottom:36px}
+.fitband{position:relative;overflow:hidden}.fitband>.wrap{position:relative;z-index:1}
 .hero:before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#c9a96e0a 0 1px,transparent 1px 22px);pointer-events:none}
 .hero .wrap{position:relative}
 .trust{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;margin-top:54px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#aab3c2}
@@ -93,7 +97,7 @@ footer .logo{font-size:1.2rem;display:block;margin-bottom:6px}
 .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-bottom:26px}
 .svc{background:#fff;border:1px solid var(--line);padding:28px 22px;text-align:center}
 .svc{padding:0 0 24px!important;overflow:hidden}.svc img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;margin-bottom:16px;transition:transform .5s}.svc:hover img{transform:scale(1.05)}.svc h3,.svc p{padding:0 18px}
-.fitband{background:linear-gradient(rgba(15,27,45,.82),rgba(15,27,45,.82)),url(img/fitting.jpg) center/cover}
+.fitband{background:var(--navy) url(vid/sewing.jpg) center/cover}
 .svc h3{font-size:1.35rem}.svc p{color:var(--muted);font-size:.88rem}
 .faq{max-width:760px;margin:0 auto}
 details{border-bottom:1px solid var(--line);padding:18px 0}
@@ -136,6 +140,7 @@ section{padding:64px 0}
 .box{padding:30px 22px}
 .row{font-size:.92rem;gap:12px}
 }
+@media (prefers-reduced-motion:reduce){.bgv{display:none}}
 </style>
 </head>
 <body>
@@ -146,11 +151,12 @@ section{padding:64px 0}
   <a href="#book" class="btn">Book Now</a>
 </div></nav>
 
-<header class="hero" id="top"><div class="wrap">
+<header class="hero" id="top">
+  <video class="bgv" autoplay muted loop playsinline preload="metadata" poster="vid/hero.jpg" aria-hidden="true"><source src="vid/hero.mp4" type="video/mp4"></video><div class="ov"></div>
+  <div class="wrap">
   <div class="eyebrow">South Kensington · Chelsea · Knightsbridge</div>
   <h1>Clothing alterations in South Kensington, <em>at your door.</em></h1>
   <div class="line"></div>
-  <p>Expert clothing alterations. We fit you at home, collect your clothes, and bring them back perfectly altered.</p>
   <a href="#book" class="btn">Book a Fitting</a>
   <div class="trust"><span>Home fitting</span><span>Free pickup &amp; delivery</span><span>Same-day option</span><span>Price agreed first</span></div>
 </div></header>
@@ -189,7 +195,9 @@ section{padding:64px 0}
   <p class="note">Final price agreed at your fitting, before any work begins. Orders under £60: £12 visit fee.</p>
 </div></section>
 
-<section class="dark fitband" id="how"><div class="wrap">
+<section class="dark fitband" id="how">
+  <video class="bgv" autoplay muted loop playsinline preload="metadata" poster="vid/sewing.jpg" aria-hidden="true"><source src="vid/sewing.mp4" type="video/mp4"></video><div class="ov" style="background:rgba(15,27,45,.82)"></div>
+  <div class="wrap">
   <div class="title"><div class="eyebrow">How It Works</div><h2>Three easy steps</h2></div>
   <div class="reveal steps">
     <div><div class="n">01</div><h3>Book</h3><p>Choose a time that suits you, including evenings and weekends.</p></div>
